@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Araxas Portfolio</title>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:"Inter",sans-serif;
+margin:0;
+color:white;
+
+background: linear-gradient(
+135deg,
+#05070d 0%,
+#050914 10%,
+#081739 22%,
+#071f33 35%,
+#07282c 48%,
+#383d44 60%,
+#6c7278 70%,
+#454a50 80%,
+#07282c 88%,
+#081739 95%,
+#05070d 100%
+);
+
+background-size:900% 900%;
+animation:gradientFlow 50s ease-in-out infinite;
+}
+
+@keyframes gradientFlow{
+0%{background-position:0% 0%;}
+25%{background-position:40% 60%;}
+50%{background-position:80% 30%;}
+75%{background-position:30% 70%;}
+100%{background-position:0% 0%;}
+}
+
+header{
+padding:25px 0;
+position:relative;
+}
+
+.logo{
+position:absolute;
+left:25px;
+font-weight:700;
+font-size:22px;
+}
+
+nav{
+text-align:center;
+}
+
+nav a{
+display:inline-flex;
+flex-direction:column;
+align-items:center;
+color:#cfd6ff;
+margin:0 18px;
+text-decoration:none;
+font-size:16px;
+cursor:pointer;
+transition:all 0.35s ease;
+}
+
+nav a i{
+width:24px;
+height:24px;
+margin-top:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transform:translateY(-6px);
+color:#9aa0a6;
+transition:all 0.35s ease;
+}
+
+nav a svg{
+width:22px;
+height:22px;
+stroke:currentColor;
+fill:none;
+stroke-width:2;
+}
+
+nav a:hover{
+transform:translateY(4px) scale(1.15);
+color:white;
+}
+
+nav a:hover i{
+opacity:1;
+transform:translateY(0);
+color:#d6d9dd;
+}
+
+nav a.active{
+transform:translateY(4px) scale(1.15);
+color:white;
+}
+
+nav a.active i{
+opacity:1;
+transform:translateY(0);
+color:#d6d9dd;
+}
+
+.page{
+display:none;
+text-align:center;
+padding:60px 20px;
+}
+
+.activePage{
+display:block;
+animation:pagePop 0.6s ease;
+}
+
+@keyframes pagePop{
+0%{
+opacity:0;
+transform:scale(0.95) translateY(20px);
+}
+100%{
+opacity:1;
+transform:scale(1) translateY(0);
+}
+}
+
+.hero{
+height:220px;
+display:flex;
+align-items:flex-start;
+justify-content:center;
+padding-top:40px;
+}
+
+.hero h1{
+font-size:56px;
+letter-spacing:1px;
+margin:0;
+
+text-shadow:
+0 0 10px rgba(255,255,255,0.2),
+0 0 25px rgba(29,211,255,0.25);
+}
+
+.aboutWrapper{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+gap:70px;
+max-width:1000px;
+margin:0 auto;
+}
+
+.about{
+max-width:560px;
+text-align:left;
+padding:38px;
+
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:18px;
+backdrop-filter:blur(10px);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.45);
+}
+
+.about h2{
+font-size:40px;
+margin-bottom:18px;
+letter-spacing:0.4px;
+}
+
+.about p{
+font-size:19px;
+line-height:1.7;
+color:#d0d6df;
+margin:0;
+}
+
+.showcaseButton{
+display:inline-block;
+margin-top:10px;
+padding:10px 18px;
+
+font-size:16px;
+font-weight:500;
+
+color:white;
+text-decoration:none;
+
+border:1px solid rgba(255,255,255,0.15);
+border-radius:8px;
+
+background:rgba(255,255,255,0.03);
+
+cursor:pointer;
+
+transition:all 0.25s ease;
+}
+
+.showcaseButton:hover{
+background:rgba(29,211,255,0.15);
+border-color:rgba(29,211,255,0.5);
+transform:translateY(-2px);
+}
+
+.avatar{
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+
+box-shadow:
+0 0 18px rgba(29,211,255,0.35),
+0 0 35px rgba(255,255,255,0.12);
+}
+
+.pricingText{
+max-width:700px;
+margin:0 auto;
+font-size:20px;
+line-height:1.8;
+color:#d0d6df;
+}
+
+.pricingText h3{
+margin-top:25px;
+margin-bottom:6px;
+font-size:26px;
+color:white;
+}
+
+.pricingText p{
+margin:6px 0;
+}
+
+#pricing h2,
+#availability h2,
+#contact h2,
+#terms h2{
+font-size:48px;
+margin-bottom:30px;
+}
+
+.contactIntro{
+font-size:22px;
+color:#d0d6df;
+max-width:700px;
+margin:0 auto 30px auto;
+}
+
+.contactSectionTitle{
+margin-top:40px;
+font-size:24px;
+color:white;
+}
+
+.pricingNote{
+margin-top:40px;
+font-size:16px;
+color:#b8bec7;
+line-height:1.6;
+}
+
+.logo{
+position:absolute;
+left:25px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-weight:700;
+font-size:22px;
+}
+
+.logo img{
+height:40px;
+}
+
+</style>
+
+<script>
+
+function showPage(pageId,element){
+
+let pages=document.querySelectorAll(".page");
+
+pages.forEach(function(page){
+page.classList.remove("activePage");
+});
+
+let newPage=document.getElementById(pageId);
+newPage.classList.add("activePage");
+
+let links=document.querySelectorAll("nav a");
+
+links.forEach(function(link){
+link.classList.remove("active");
+});
+
+if(element){
+element.classList.add("active");
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
+<span>Araxas Portfolio</span>
+</div>
+
+<nav>
+
+<a onclick="showPage('home',this)" class="active">Home
+<i>
+<svg viewBox="0 0 24 24">
+<path d="M3 11l9-8 9 8"></path>
+<path d="M5 10v10h14V10"></path>
+</svg>
+</i>
+</a>
+
+<a onclick="showPage('showcase',this)">Showcase
+<i>
+<svg viewBox="0 0 24 24">
+<rect x="2" y="7" width="20" height="14" rx="2"></rect>
+<path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
+</svg>
+</i>
+</a>
+
+<a onclick="showPage('pricing',this)">Pricing
+<i>
+<svg viewBox="0 0 24 24">
+<path d="M20 12l-8 8-8-8V4h8l8 8z"></path>
+<circle cx="8.5" cy="8.5" r="1.5"></circle>
+</svg>
+</i>
+</a>
+
+<a onclick="showPage('availability',this)">Availability
+<i>
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 7v6l4 2"></path>
+</svg>
+</i>
+</a>
+
+<a onclick="showPage('contact',this)">Contact
+<i>
+<svg viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="2"></rect>
+<path d="M3 7l9 6 9-6"></path>
+</svg>
+</i>
+</a>
+
+<a onclick="showPage('terms',this)">Terms
+<i>
+<svg viewBox="0 0 24 24">
+<path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+<line x1="9" y1="13" x2="15" y2="13"></line>
+<line x1="9" y1="17" x2="15" y2="17"></line>
+</svg>
+</i>
+</a>
+
+</nav>
+
+</header>
+
+<div id="home" class="page activePage">
+<div class="hero">
+<h1>Roblox 3D Asset Artist</h1>
+</div>
+
+<div class="aboutWrapper">
+
+<div class="about">
+
+<h2>About Me</h2>
+
+<p>Hello, my name is Aras and I am a 16-year-old Roblox developer who focuses on creating 3D assets for Roblox games.</p>
+
+<p>I have been working with Roblox Studio for about two years and started learning Blender several months ago.</p>
+
+<p>I mainly use Blender along with various texture and material resources to create props, simple environment assets and game objects.</p>
+
+<p>My work focuses on stylized and optimized models designed to fit well into Roblox games.</p>
+
+<p>I enjoy creating assets for games and improving my skills with every project.</p>
+
+<p>Feel free to take a look at some of my work.</p>
+
+<a class="showcaseButton" onclick="showPage('showcase')">
+View my Showcase
+</a>
+
+</div>
+
+<img src="pictureMe.png" class="avatar">
+
+</div>
+</div>
+
+<div id="showcase" class="page">
+<h2>Showcase</h2>
+<p>Test page for showcase.</p>
+</div>
+
+<div id="pricing" class="page">
+<h2>Pricing</h2>
+<div class="pricingText">
+
+<h3>Small Assets</h3>
+<p>$3 – $7 / 1200 – 2400 R$</p>
+<p>Examples: crates, barrels, simple tools, small decorations.</p>
+
+<h3>Medium Assets</h3>
+<p>$7 – $18 / 2400 – 6200 R$</p>
+<p>Examples: machines, vehicles, detailed props, stylized weapons.</p>
+
+<h3>Large / Complex Assets</h3>
+<p>$18 – $35+ / 6200 – 12000+ R$</p>
+<p>Examples: large structures, complex environment props, detailed vehicles.</p>
+
+<h3>Accepted Payment Methods</h3>
+
+<p>
+• Robux — Gamepass / Group Funds<br>
+• USD / EUR / other currencies — PayPal<br>
+• EUR — SEPA bank transfer
+</p>
+
+<p>
+! Buyer covers 30% Roblox fee if Gamepass
+</p>
+
+<div class="pricingNote">
+
+<p>→ Final price may vary depending on asset size, complexity, project requirements, deadlines or additional details.</p>
+
+<p>→ The final price will be discussed before starting the commission.</p>
+
+<p>→ 50% payment is required before the modeling work begins.</p>
+
+<p>→ Progress screenshots can be provided during development.</p>
+
+<p>→ Revisions can of course be requested during the modeling process or after the final preview before delivery to ensure the asset meets your expectations.</p>
+
+<p>→ For more details, please see the Terms page.</p>
+
+<a class="showcaseButton" onclick="showPage('terms')">
+View Terms
+</a>
+
+</div>
+</div>
+</div>
+
+<div id="availability" class="page">
+<h2>Availability</h2>
+<div class="pricingText">
+
+<h3>Status</h3>
+<p>🟢 Open for Commissions</p>
+
+<h3>Working Hours</h3>
+
+<p><strong>Weekdays (Mon – Fri)</strong><br>
+3 – 5 hours available per day</p>
+
+<p><strong>Weekends</strong><br>
+1 – 5 hours available depending on the day</p>
+
+<h3>Work Type</h3>
+<p>
+• Commissions<br>
+• Part-time projects
+</p>
+
+<h3>Currently Not Modeling</h3>
+<p>
+• Characters<br>
+• Clothing<br>
+• High-poly realistic assets<br>
+• Large interior environments<br>
+• Animation<br>
+• Rigged characters
+</p>
+
+</div>
+</div>
+
+<div id="contact" class="page">
+<h2>Contact</h2>
+
+<p class="contactIntro">
+If you would like to commission a 3D asset or discuss a project, feel free to contact me.
+</p>
+
+<div class="pricingText">
+
+<h3>Discord</h3>
+<p>pilotunfliegen</p>
+
+<h3>Roblox</h3>
+<p>Pilotunfliegen10</p>
+
+<h3>Email</h3>
+<p>gungoraras1@gmail.com</p>
+
+<h3>Response Time</h3>
+<p>Usually within 24 hours.</p>
+
+<h3 class="contactSectionTitle">Project Information</h3>
+
+<p>Including the following information in your message helps me understand your project faster and avoid misunderstandings:</p>
+
+<p>
+• Asset type<br>
+• Style reference (if available)<br>
+• Deadline (if any)<br>
+• Budget
+</p>
+
+</div>
+</div>
+
+<!-- TERMS -->
+
+<div id="terms" class="page">
+
+<h2>Terms of Service </h2>
+
+<div class="pricingText">
+
+<h3>Right to Refuse</h3>
+<p>→ I reserve the right to decline any commission request.</p>
+
+<h3>Payment</h3>
+<p>→ 50% payment is required before I start working on the asset.</p>
+<p>→ The remaining 50% must be paid after the asset is completed and approved.</p>
+
+<h3>Project Information</h3>
+<p>→ Please provide clear information about the project when contacting me.</p>
+<p>→ This includes asset type, references, deadline and budget.</p>
+
+<h3>Revisions</h3>
+<p>→ Revisions can be requested during the modeling process.</p>
+<p>→ Small changes can also be requested after the final preview before delivery.</p>
+
+<h3>Refunds</h3>
+<p>→ Refunds are not available once I have started working on the project.</p>
+
+<h3>Usage</h3>
+<p>→ I may display the created assets in my portfolio as examples of my work.</p>
+
+<h3>Communication</h3>
+<p>→ Please remain responsive during the commission process so feedback can be handled quickly.</p>
+
+</div>
+
+</div>
+</body>
+</html>
